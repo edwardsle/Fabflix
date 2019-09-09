@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!-- <a href="api/logout">Click to log out</a> -->
+<head>
+<title>Fabflix | Browse</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="res/css/main.css">
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fabflix</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="browse.html">Browse Movies</a></li>
+				<li><a href="search.html">Advanced Search</a></li>
+			</ul>
+			<form class="navbar-form navbar-left" method="GET" action="movies.html">
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Looking for title?" name="title">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						</form>
+					</div>
+				</div>
+			</form>
+
+			<ul class="nav navbar-nav navbar-right" id="cart" v-cloak>
+				<li><a href="cart.html"><span class="badge badge-light"
+						v-on:addcart="add($event)">{{totalItemCount}}</span><span
+						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="user" v-cloak>
+				<li v-if="id !== null"><a href="#"><span
+						class="glyphicon glyphicon-user"></span> Hi {{firstname}}
+						{{lastname}}</a></li>
+				<li v-if="id === null"><a href="login.html"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li v-if="id !== null"><a href="#" v-on:click="handleLogout()"><span
+						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</span>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="page-header">
+		<h2 class="text-center">Browse Movies</h2>
+	</div>
+	<div class="container">
+		<div id="genre" class="row">
+			<h3>
+				<strong>Browse by genre:</strong>
+			</h3>
+			<div class="col-sm-3" v-for="genre in genres">
+				<a v-bind:href="'movies.html?genreId=' + genre.id">{{genre.name}}</a>
+			</div>
+		</div>
+		<div id="letter" class="row">
+			<h3>
+				<strong>Browse by title:</strong>
+			</h3>
+			<div class="col-sm-1" v-for="letter in letterArray">
+				<a v-bind:href="'movies.html?letter=' + letter">{{letter}}</a>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="browse.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="res/js/user.js"></script>
+	<script src="res/js/cart.js"></script>
+
+	<script>
+	var genreElem = new Vue({
+	    el: '#genre',
+	    data : {
+	    	genres : null,
+	    	ready : false
+	    },
+	    mounted() {
+	    	axios
+	    	.get('/project2/api/genre')
+	    	.then((response) => {
+	    		this.genres = response.data;
+	    		if (this.genres.length >= 0)
+	    			this.ready = true;
+	    	});
+	    }
+	})
+	</script>
+
+	<script>
+	var letterElem = new Vue({
+		el: '#letter',
+		data : {
+			letterArray : ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+		},
+		methods : {
+			browseByLetter(letter) {
+				alert(letter);
+			}
+		}
+	})
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="#ffffff"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_title"
+        android:text="Title"
+        android:textSize="20dp"
+        android:textColor="#0984e3"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_year"
+        android:text="2018"
+        android:textSize="18dp"
+        android:textColor="#74b9ff"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_director"
+        android:text="Director"
+        android:textSize="16dp"
+        android:textColor="#2d3436"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_genres"
+        android:text="Genres"
+        android:textSize="16dp"
+        android:textColor="#2d3436"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_stars"
+        android:text="Stars"
+        android:textSize="16dp"
+        android:textColor="#2d3436"/>
+</LinearLayout>

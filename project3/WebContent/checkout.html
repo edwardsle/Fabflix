@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<!-- <a href="api/logout">Click to log out</a> -->
+<head>
+<title>Fabflix | Checkout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+	background-color: #f7f7f7
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fabflix</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="browse.html">Browse Movies</a></li>
+				<li><a href="search.html">Advanced Search</a></li>
+			</ul>
+			<form class="navbar-form navbar-left" method="GET" action="movies.html">
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Looking for title?" name="title">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						</form>
+					</div>
+				</div>
+			</form>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="cart.html" id="cart"><span
+						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="user">
+				<li v-if="id !== null"><a href="#"><span
+						class="glyphicon glyphicon-user"></span> Hi {{firstname}}
+						{{lastname}}</a></li>
+				<li v-if="id === null"><a href="login.html"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li v-if="id !== null"><a href="#" v-on:click="handleLogout()"><span
+						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</span>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container page-header" id="checkout">
+		<div class="row" v-if="showLoading">
+			LOADING...........
+		</div>
+		<div class="row" v-if="showPaymentInfo">
+			<h2 class="text-center">Enter Credit Card Information</h2>
+			<form @submit.prevent="submitOrder();">
+				<div class="form-group">
+					<label for="ccfirstname">First Name on Credit Card</label> <input
+						type="text" class="form-control" id="ccfname" name="fname" v-model="payment.fname">
+				</div>
+				<div class="form-group">
+					<label for="cclastname">Last Name on Credit Card</label> <input
+						type="text" class="form-control" id="cclname" name="lname" v-model="payment.lname">
+				</div>
+				<div class="form-group">
+					<label for="creditcard">Credit Card Number</label> <input
+						type="text" class="form-control" id="creditcard" name="cc" v-model="payment.cc">
+				</div>
+				<div class="form-group">
+					<label for="Expiration Date">Expiration Date (YYYY-MM-DD)</label> <input
+						type="text" class="form-control" id="ExpirationDate" name="exp" v-model="payment.exp">
+				</div>
+				<button class="btn btn-primary btn-lg" type="submit">Confirm
+					Purchase</button>
+				<div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
+			</form>
+		</div>
+		<div class="row" v-if="showConfirmation">
+			<div class="confirm text-center">
+				<img src="res/img/icon.png" class="icon">
+				<h1>
+					<Strong>Thank you!</Strong>
+				</h1>
+				<h3>Your order has been confirmed.</h3>
+				<h4>
+					Your Receipt
+				</h4>
+			</div>
+			<div class="table">
+				<table class="table table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Sale ID</th>
+							<th scope="col">Movie Title</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="sale in confirmation">
+							<td>{{sale.id}}</td>
+							<td>{{sale.movieName}}</td>
+							<td>1</td>
+							<td>$9.99</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="res/js/user.js"></script>
+	<script src="res/js/cart.js"></script>
+	<script>
+	new Vue({
+	    el: '#checkout',
+	    data : {
+	    	payment : {
+	    		fname: '',
+	            lname: '',
+	            cc : '',
+	            exp : '',
+	    	},
+	    	errorMessage :  null,
+	    	inTransaction : false,
+	    	confirmmation : '',
+	    	showConfirmation : false,
+	    	showPaymentInfo : true,
+	    	showLoading : false
+	    },
+	    methods : {
+	    	submitOrder() {
+	    		if (this.payment.fname == '' || this.payment.lname == '' || this.payment.cc == '' || this.payment.exp == '')
+	    			{
+	    				this.errorMessage = "Please check your payment information.";
+	    				return;
+	    			}
+	    		
+	    		this.showPaymentInfo = false;
+	    		this.showLoading = true;
+	    		axios
+	    		.post('/project3/api/checkout', this.payment)
+	    		.then((response) => {
+	    			this.showLoading = false;
+	    			if (response.data.length > 0)
+	    				{
+		    				this.confirmation = response.data;
+		    				this.showConfirmation = true;
+	    				}
+	    			else
+	    				{
+	    					this.showPaymentInfo = true,
+	    					this.errorMessage = 'Transaction failed. Please check your payment information.' 
+	    				}
+	    			
+	    			console.log(response.data);
+	    			console.log(this.payment);
+	    			
+	    		});
+	    	}
+	    }
+	})
+	
+	
+	</script>
+</body>
+</html>

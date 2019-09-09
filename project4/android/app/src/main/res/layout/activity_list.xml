@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d1d1d1"
+    tools:context=".SearchActivity">
+    
+
+
+    <Button
+        android:id="@+id/previousBtn"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:text="@string/previous" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="@string/next" />
+
+    <TextView
+        android:id="@+id/result_per_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/listViewMovies"
+        android:text="@string/results_per_page"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_alignParentLeft="true" />
+
+    <ListView
+        android:id="@+id/listViewMovies"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_width="match_parent"
+        android:layout_height="498dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:divider="#d1d1d1"
+        android:dividerHeight="10dp" />
+
+</RelativeLayout>

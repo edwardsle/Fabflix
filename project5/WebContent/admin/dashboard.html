@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Employee's Dashboard</title>
+<!-- Bootstrap core CSS -->
+<link href="/project5/res/css/bootstrap.min.css" rel="stylesheet">
+<link href="/project5/res/css/style.css" rel="stylesheet">
+<script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="dashboard.html">Fabflix</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="dashboard.html">Overview</a></li>
+					<li><a href="metadata.html">Database Metadata</a></li>
+					<li><a href="users.html">Users</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+							Welcome, TA</a></li>
+					<li><a href="emp_login.html"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<header id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10">
+					<h1>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						Dashboard
+					</h1>
+				</div>
+				<div class="col-md-2">
+					<div class="dropdown create">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="true">
+							Create Content <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a type="button" data-toggle="modal"
+								data-target="#addStar">Add New Star</a></li>
+							<li><a type="button" data-toggle="modal"
+								data-target="#addMovie">Add New Movie</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section id="breadcrumb">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li class="active">Dashboard</li>
+			</ol>
+		</div>
+	</section>
+
+	<section id="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="list-group">
+						<a href="#" class="list-group-item active main-color-bg"> <span
+							class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							Dashboard
+						</a> <a href="#" class="list-group-item"><span
+							class="glyphicon glyphicon-star" aria-hidden="true"></span> Stars
+							<span class="badge">60150</span></a> <a href="#"
+							class="list-group-item"><span
+							class="glyphicon glyphicon-film" aria-hidden="true"></span>
+							Movies <span class="badge">9052</span></a> <a href="#"
+							class="list-group-item"><span
+							class="glyphicon glyphicon-user" aria-hidden="true"></span> Users
+							<span class="badge">453</span></a>
+					</div>
+
+					<div class="well">
+						<h4>Disk Space Used</h4>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+								60%</div>
+						</div>
+						<h4>Bandwidth Used</h4>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="40"
+								aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+								40%</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<!-- Website Overview -->
+					<div class="panel panel-default">
+						<div class="panel-heading main-color-bg">
+							<h3 class="panel-title">Website Overview</h3>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-3">
+								<div class="well dash-box">
+									<h2>
+										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+										453
+									</h2>
+									<h4>Users</h4>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="well dash-box">
+									<h2>
+										<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+										9052
+									</h2>
+									<h4>Movies</h4>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="well dash-box">
+									<h2>
+										<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										60150
+									</h2>
+									<h4>Stars</h4>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="well dash-box">
+									<h2>
+										<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+										12,345
+									</h2>
+									<h4>Visitors</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Latest Users -->
+					<div class="panel panel-default">
+						<div class="panel-heading main-color-bg">
+							<h3 class="panel-title">Latest Users</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-striped table-hover">
+								<tr>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Joined</th>
+								</tr>
+								<tr>
+									<td>Jill Smith</td>
+									<td>jillsmith@gmail.com</td>
+									<td>May 20, 2018</td>
+								</tr>
+								<tr>
+									<td>Eve Jackson</td>
+									<td>ejackson@yahoo.com</td>
+									<td>May 20, 2018</td>
+								</tr>
+								<tr>
+									<td>John Doe</td>
+									<td>jdoe@gmail.com</td>
+									<td>May 19, 2018</td>
+								</tr>
+								<tr>
+									<td>Stephanie Landon</td>
+									<td>landon@yahoo.com</td>
+									<td>May 18, 2018</td>
+								</tr>
+								<tr>
+									<td>Mike Johnson</td>
+									<td>mjohnson@gmail.com</td>
+									<td>May 17, 2018</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Modals -->
+
+	<!-- Add Star -->
+	<div class="modal fade" id="addStar" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form id="new-star-form" method="post" action="#"
+					v-on:submit.prevent="handleSubmit">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Add New Star</h4>
+					</div>
+					<div class="modal-body">
+						<!-- If there's an existing star with the same name and birth year, treat them as a new person and create a new record. -->
+						<div class="form-group">
+							<label for="validationStarName">Star Name (Required)</label> <input
+								type="text" class="form-control" id="validationStarName"
+								placeholder="Enter Star Name.." v-model="form.name" required>
+						</div>
+						<div class="form-group">
+							<label>Birth Year (Optional)</label> <input type="text"
+								class="form-control" placeholder="Enter Birth Year.."
+								v-model="form.birthYear">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal"
+								v-on:click="reset()">Close</button>
+							<button type="submit" class="btn btn-primary"
+								v-show="response.success == false">Add Star</button>
+						</div>
+						<div
+							v-bind:class="{'text-success d-none':(response.success == true), 'text-danger d-inline':(response.success == false)}">
+							{{response.message}} <br>
+
+						</div>
+						<!-- <a :href="'star.html?id=' + response.payload"
+							v-if="response.success == true && response.payload !== ''" target="_blank">Click here to
+							view the star</a> -->
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Movie -->
+	<div class="modal fade" id="addMovie" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form id="new-movie-form" method="post" action="#"
+					v-on:submit.prevent="handleSubmit">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Add New Movie</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Movie is identified by title, year, director -->
+						<!-- If the movie already exists, show a corresponding message, and no changes to the database are made. -->
+						<div class="form-group">
+							<label for="validationTitle">Title</label> <input
+								v-model="form.title" type="text" class="form-control"
+								id="validationTitle" placeholder="Enter Movie Title.." required>
+						</div>
+						<div class="form-group">
+							<label for="validationMovieYear">Year</label> <input
+								v-model="form.year" type="text" class="form-control"
+								id="validationMovieYear" placeholder="Enter Year Released.."
+								required>
+						</div>
+						<div class="form-group">
+							<label for="validationDirector">Director</label> <input
+								v-model="form.director" type="text" class="form-control"
+								id="validationDirector" placeholder="Enter Director Name.."
+								required>
+						</div>
+
+						<!-- If the star or genre already exists, link them to the movie. In the case of two star records with the same name, link any of them. -->
+						<!-- If the star or genre doesn't exist, create it and then link it to to the movie. (star birth year is optional and can be leaved to null) -->
+
+						<div class="form-group">
+							<label for="validationStar">Star Name</label> <input
+								v-model="form.starName" type="text" class="form-control"
+								id="validationStar" placeholder="Enter A Star Name.." required>
+						</div>
+						<div class="form-group">
+							<label for="validationGenre">Genre</label> <input
+								v-model="form.genreName" type="text" class="form-control"
+								id="validationGenre" placeholder="Enter A Movie Genre.."
+								required>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal"
+								v-on:click="reset()">Close</button>
+							<button type="submit" class="btn btn-primary"
+								v-show="response.success == false">Add Movie</button>
+						</div>
+						<div
+							v-bind:class="{'text-success d-none':(response.success == true), 'text-danger d-inline':(response.success == false)}">{{response.message}}
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/project5/res/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+	var newStarForm = new Vue({
+		el: '#new-star-form',
+		data: {
+			form : {
+				name : '',
+				birthYear: ''
+			},
+			response : {
+				success: false,
+				message: '',
+				payload : ''
+			}
+		},
+		methods: {
+			handleSubmit() {
+				axios
+	    		.post('/project5/admin/api/star', this.form)
+	    		.then((response) => {
+	    			this.response = response.data;
+	    		});
+				/* alert(this.form.birthYear); */
+			},
+			reset() {
+				this.form.name = '';
+				this.form.birthYear = '';
+				this.response.message = '';
+				this.response.payload = '';
+				this.response.success = false;
+			}
+		}
+	});
+	</script>
+	<script>
+	var newMovieForm = new Vue({
+		el: '#new-movie-form',
+		data: {
+			form : {
+				title : '',
+				year: '',
+				director : '',
+				starName : '',
+				genreName : ''
+			},
+			response : {
+				success: false,
+				message: ''
+			}
+		},
+		methods: {
+			handleSubmit() {
+				axios
+	    		.post('/project5/admin/api/movie', this.form)
+	    		.then((response) => {
+	    			this.response = response.data;
+	    		});
+			},
+			reset() {
+				this.form.title = '';
+				this.form.year = '';
+				this.form.director = '';
+				this.form.starName = '';
+				this.form.genreName = '';
+				this.response.success = false;
+				this.response.message = '';
+			}
+		}
+	});
+	
+	</script>
+</body>
+</html>

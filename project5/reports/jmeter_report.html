@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: linen;
+}
+
+td {
+    border-top-style: solid;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Single-instance version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/10 threads/No prepared statements</td>
+    <td><img src="screenshots/single/graph_results_case1.jpg" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>21</td>
+    <td>5.1752987</td>
+    <td>1.9423118</td>
+    <td>Prepared statement is not used in this case so it puts more overhead on database. Therefore, there is no performance gain in the average search servlet time.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads/No connection pooling</td>
+    <td><img src="screenshots/single/graph_results_case2.jpg" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>16</td>
+    <td>1.0229706</td>
+    <td>0.5803421</td>
+    <td>Since we use prepared statements in this case, we see an increase in performance of the average search servlet as well as the avergae JDBC time. (This result is however unexpected as it should have been slower without connection pooling)</td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTPS/1 thread</td>
+    <td><img src="screenshots/single/graph_results_case3.jpg" alt="Graph Results Screenshot Case 3" style="width:304px;height:228px;"></td>
+    <td>18</td>
+    <td>1.43335</td>
+    <td>0.6803653</td>
+    <td>This is expected to be the fastest as there is only 1 thread running the queries so mysql server utilizes all the resources to it.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads</td>
+    <td><img src="screenshots/single/graph_results_case4.jpg" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>23</td>
+    <td>5.7324233</td>
+    <td>2.1733806</td>
+    <td>Even with prepared statements and connection pooling, the performance is decreased with the increase in number of threads since resources need to shared among the threads. </td>
+  </tr>
+  <tr>
+    <td>Case 5: HTTPS/10 threads</td>
+    <td><img src="screenshots/single/graph_results_case5.jpg" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>22</td>
+    <td>5.502523</td>
+    <td>2.188491</td>
+    <td>The performance also suffers in the case as it adds more overhead to encrypt and decrypt data. Furthermore, performance is decreased with the increased number of threads.</td>
+  </tr>
+
+</table> 
+
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Scaled version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/10 threads/No prepared statements</td>
+    <td><img src="screenshots/scaled/graph_results_case1.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>22</td>
+    <td>5.7810755</td>
+    <td>1.605873</td>
+    <td>This is unexpected as it performs worse than the single instance case with no prepared statements. However, it does show faster average JDBC time which is expected for the scaled version.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads/No connection pooling</td>
+    <td><img src="screenshots/scaled/graph_results_case2.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>20</td>
+    <td>2.0355256</td>
+    <td>1.1094908</td>
+    <td>The average JDBC time is increased as expected due to the load being shared among the backend servers. </td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTP/1 thread</td>
+    <td><img src="screenshots/scaled/graph_results_case3.png" alt="Graph Results Screenshot Case 3" style="width:304px;height:228px;"></td>
+    <td>20</td>
+    <td>1.6687398</td>
+    <td>0.72204554</td>
+    <td>This is as expected to be fast and is expected to be slower than the single instance with 1 thread as it has to go through a proxy server.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads</td>
+    <td><img src="screenshots/scaled/graph_results_case4.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>19</td>
+    <td>1.8479124</td>
+    <td>0.9276728</td>
+    <td>Performance is increased as compared to the single instance case with 10 threads due to load balancing at the backend servers so it does not place as much overhead.</td>
+  </tr>
+
+</table> 
+
+</body>
+</html>

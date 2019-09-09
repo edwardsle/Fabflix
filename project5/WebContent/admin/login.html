@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Employee's Login</title>
+<!-- Google reCaptcha api -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<!-- Complete CSS -->
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/project5/res/css/main.css">
+</head>
+<body class="login-body">
+	<div class="login-box">
+		<img src="/project5/res/img/login_avatar.png" class="avatar">
+		<h1>
+			<strong>Employee's Login</strong>
+		</h1>
+		<form id="login-form" method="post" action="#"
+			v-on:submit.prevent=handleSubmit>
+			<p>Email</p>
+			<input type="text" name="email" placeholder="Enter Email"
+				v-model="form.email">
+			<p>Password</p>
+			<input type="password" name="password" placeholder="Enter Password"
+				v-model="form.password">
+			<div class="g-recaptcha"
+				data-sitekey="6LcoyFgUAAAAAIxVBZOUeLdlDHJyG-gAYBg_P9sg"></div>
+			<input type="submit" name="submit" value="Login"> <a href="#">Forgot
+				Password?</a>
+			<div
+				v-bind:class="{'text-success':(info.status === 'success'), 'text-danger':(info.status === 'fail')}">{{info.message}}
+			</div>
+		</form>
+	</div>
+	<!-- Complete Javascript -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/project5/res/js/emp_login.js"></script>
+</body>
+</html>

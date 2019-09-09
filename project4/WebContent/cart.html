@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<!-- <a href="api/logout">Click to log out</a> -->
+<head>
+<title>Fabflix | Cart</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="res/css/main.css">
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fabflix</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="browse.html">Browse Movies</a></li>
+				<li><a href="search.html">Advanced Search</a></li>
+			</ul>
+			<form class="navbar-form navbar-left" method="GET" action="movies.html">
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Looking for title?" name="title">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						</form>
+					</div>
+				</div>
+			</form>
+
+			<ul class="nav navbar-nav navbar-right" id="user" v-cloak>
+				<li v-if="id !== null"><a href="#"><span
+						class="glyphicon glyphicon-user"></span> Hi {{firstname}}
+						{{lastname}}</a></li>
+				<li v-if="id === null"><a href="login.html"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li v-if="id !== null"><a href="#" v-on:click="handleLogout()"><span
+						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</span>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="page-header">
+		<h2 class="text-center">Your Shopping Cart</h2>
+	</div>
+
+
+	<div class="container" id="cart" v-cloak>
+		<div class="row text-info text-center" v-if="totalItemCount <= 0" v-cloak>
+			<h3>You don't have any movies in your cart.</h3>
+		</div>
+		<div class="row" v-if="totalItemCount > 0" v-cloak>
+			<div class="col-sm-20 col-md-10 col-md-offset-1">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Movie Title</th>
+							<th class="text-center">Quantity</th>
+							<th class="text-center">Price</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="item in cart">
+							<td class="">
+								<div class="title">
+									<div class="title-body">
+										<h4 class="title-heading">
+											<a :href="'movie.html?id=' + item.movie.id">{{item.movie.title}}</a>
+										</h4>
+									</div>
+								</div>
+							</td>
+							<td style="text-align: center">
+								<div class="btn-group" role="group" aria-label="Basic example">
+									<button type="button" class="btn btn-secondary"
+										v-on:click="decrease(item.id)">-</button>
+									<button type="button" class="btn btn-secondary">{{item.quantity}}</button>
+									<button type="button" class="btn btn-secondary"
+										v-on:click="increase(item.id)">+</button>
+								</div>
+							</td>
+							<td class="col-sm-1 col-md-1 text-center"><strong>$9.99</strong></td>
+							<td class="col-sm-1 col-md-1">
+								<button type="button" class="btn btn-danger"
+									v-on:click="remove(item.id)">
+									<span class="glyphicon glyphicon-remove"></span> Remove
+								</button>
+							</td>
+						</tr>
+						<tr>
+
+							<td colspan=3><h3>Total</h3></td>
+							<td class="text-right"><h3>
+									<strong>$20.99</strong>
+								</h3></td>
+						</tr>
+						<tr>
+							<td>
+								<button class="btn btn-warning" role="button"
+									v-on:click="showConfirm = true">
+									Empty Cart <span class="glyphicon glyphicon-trash"></span>
+								</button> <br>
+							<br>
+							<span v-if="showConfirm"> Are you sure?
+									<button type="button" class="btn btn-primary btn-sm"
+										v-on:click="clear(); showConfirm = false">Yes</button>
+									<button type="button" class="btn btn-secondary btn-sm"
+										v-on:click="showConfirm = false">No</button>
+							</span>
+							</td>
+							<td> </td>
+							<td> </td>
+							<td>
+							<a href="checkout.html" type="submit" class="btn btn-success"
+								role="button">Checkout <span class="glyphicon glyphicon-ok"></span></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="res/js/user.js"></script>
+	<script src="res/js/cart.js"></script>
+
+
+</body>
+</html>

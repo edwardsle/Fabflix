@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="#f4f4f4"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/title"
+        android:textColor="#0984e3"
+        android:drawableStart="@drawable/movie"
+        android:textSize="36sp"
+        android:drawableLeft="@drawable/movie" />
+
+    <TextView
+        android:id="@+id/movie_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="116dp"
+        android:drawableLeft="@drawable/year"
+        android:drawableStart="@drawable/year"
+        android:text="@string/year"
+        android:textColor="#74b9ff"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/movie_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="178dp"
+        android:text="@string/director"
+        android:textColor="#2d3436"
+        android:drawableStart="@drawable/director"
+        android:textSize="24sp"
+        android:drawableLeft="@drawable/director" />
+
+    <TextView
+        android:id="@+id/movie_genres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableLeft="@drawable/genre"
+        android:drawableStart="@drawable/genre"
+        android:text="@string/genres"
+        android:textColor="#2d3436"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/movie_stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="121dp"
+        android:drawableLeft="@drawable/star"
+        android:drawableStart="@drawable/star"
+        android:text="@string/stars"
+        android:textColor="#2d3436"
+        android:textSize="24sp" />
+</RelativeLayout>
